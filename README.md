@@ -223,7 +223,10 @@ The sample React Web Application uses [AWS Amplify][aws-amplify] framework.  The
 Take a look at `src/index.jsx` and review how [AWS Amplify][aws-amplify] is initially configured before the sample React Web Application starts.  Note that the variables defined in `src/config_dev.jsx` are imported and used for the configuration.
 
 ```Javascript
+import Amplify from 'aws-amplify';
+import AWS from 'aws-sdk';
 import config from './config_dev';
+
 //AWS SDK & AWS Amplity Configuration
 AWS.config.region = config.AWS_REGION;
 Amplify.configure({
