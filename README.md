@@ -99,7 +99,7 @@ Download the Metadata XML file that will be used in the following section to con
 
 # Configure Cognito User Pool
 
-The assumption in this section is that a Cognito User Pool has already been created that we will configure with SAML iDP.  If a user pool does not exist, create one with default values.
+The assumption in this section is that a Cognito User Pool has already been created that we will configure with SAML iDP.  If a user pool does not exist, create one with default values.  Note down the `User Pool Id` as it will be used in following sections.
 
 ### Create App client
 
@@ -137,6 +137,18 @@ The assumption in this section is that a Cognito User Pool has already been crea
   * User pool attribute: Email
 
 Note: It is possible to capture custom User Pool attriubtes here as well.  To map custom attributes, make sure that the custom attribute are both read and write enabled by going to General Setting > App Clients > Show Details > Set attribute read and write permissions.  Select the custom attribute in both read and write columns and hit `Save app client changes`
+
+### Create Identity Pool
+
+Identity Pool is needed by AWS Amplify SDK used in the React web application.  It is used to pass temporary AWS credentials such that the idP user signed into web application via Cognito is able to invoke AWS services (AppSync, S3 etc) without needing an actual IAM user.
+
+- Log into your AWS account and launch Cognito service from the AWS dashboard
+- On the top, next to User Pool, click on `Federated Identities`
+- Click `Create new identity pool`.  Assign a unique identify pool name
+- Expand `Authentication Providers`.  Click on Cognito
+- Fill in the `User Pool ID` and `App client id` values.  These were created earlier in this section.
+- Click `Create Pool` button.
+- If you are prompted to create IAM roles, create them.  You can later tweak these roles to give access to additional AWS services to Cognito idP users.
 
 # Sign out flow Setup
 
