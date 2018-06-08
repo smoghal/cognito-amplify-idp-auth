@@ -207,7 +207,7 @@ While still in ADFS1 node
 
 # React Web Application
 
-Update src/config_dev.jsx configuration file properties (below) to match your Cognito configuration before launching or deploying the application
+The sample React Web Application uses [AWS Amplify][aws-amplify] framework.  The first step in configuring AWS Amplify for the sample web application is to edit `src/config_dev.jsx`.  Update configuration file properties (below) to match your Cognito configuration before launching or deploying the application.  Contact your infrasrtructure team (or the person responsibile for setting up Cognito and ADFS authentication as documented earlier) to get the values for each of the following fields.
 
 - `AWS_REGION`: cognito pool region,
 - `AWS_COGNITO_IDENTITY_POOL_ID`: identity pool id
@@ -218,6 +218,32 @@ Update src/config_dev.jsx configuration file properties (below) to match your Co
 - `AWS_COGNITO_IDP_SIGNIN_URL`: sign in URL (this is web application url that will initialize AWS Amplify SDK)
 - `AWS_COGNITO_IDP_SIGNOUT_URL`: sign out URL
 - `AWS_COGNITO_IDP_GRANT_FLOW`: possible values are 'code' or 'token'
+
+
+Take a look at `src/index.jsx` and review how [AWS Amplify][aws-amplify] is initially configured before the sample React Web Application starts.  Note that the variables defined in `src/config_dev.jsx` are imported and used for the configuration.
+
+```Javascript
+import config from './config_dev';
+//AWS SDK & AWS Amplity Configuration
+AWS.config.region = config.AWS_REGION;
+Amplify.configure({
+  Auth: {
+    identityPoolId: config.AWS_COGNITO_IDENTITY_POOL_ID, // REQUIRED - Amazon Cognito Identity Pool ID
+    region: config.AWS_REGION, // REQUIRED - Amazon Cognito Region
+    userPoolId: config.AWS_COGNITO_USER_POOL_ID, //OPTIONAL - Amazon Cognito User Pool ID
+    userPoolWebClientId: config.AWS_COGNITO_CLIENT_ID, //OPTIONAL - Amazon Cognito Web Client ID
+    oauth: {
+      domain: config.AWS_COGNITO_CLIENT_DOMAIN_NAME,
+      scope: config.AWS_COGNITO_IDP_OAUTH_CLAIMS,
+      redirectSignIn: config.AWS_COGNITO_IDP_SIGNIN_URL,
+      redirectSignOut: config.AWS_COGNITO_IDP_SIGNOUT_URL,
+      responseType: config.AWS_COGNITO_IDP_GRANT_FLOW
+    }
+  }
+});
+```
+
+Review the rest of the sample application to understand how to use [AWS Amplify][aws-amplify] in conjunction with Cognito and iDP (ADFS) to perform authentication.  Once the [AWS Amplify][aws-amplify] is configured, it is simple to invoke AWS AppSync calls from the app.  Refer to [AWS Amplify GraphQL Endpoint][aws-amplify-appsync] documentation
 
 # References
 
@@ -231,3 +257,5 @@ Update src/config_dev.jsx configuration file properties (below) to match your Co
 
 [aws-wap-adfs-quickstart]: https://aws.amazon.com/quickstart/architecture/wap-adfs/
 [blog1]: https://aws.amazon.com/blogs/mobile/amazon-cognito-user-pools-supports-federation-with-saml/
+[aws-amplify]: https://aws.github.io/aws-amplify/media/developer_guide
+[aws-amplify-appsync]: https://aws.github.io/aws-amplify/media/api_guide#working-with-graphql-endpoints
