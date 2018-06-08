@@ -246,7 +246,7 @@ Amplify.configure({
 });
 ```
 
-Review the rest of the sample application to understand how to use [AWS Amplify][aws-amplify] in conjunction with Cognito and iDP (ADFS) to perform authentication.  Once the [AWS Amplify][aws-amplify] is configured, it is simple to invoke AWS AppSync calls from the app.  Refer to [AWS Amplify GraphQL Endpoint][aws-amplify-appsync] documentation
+Review the rest of the sample React Web Application to understand how [AWS Amplify][aws-amplify] is used to perform authentication against Cognito, which is configured with iDP (ADFS).  Once the [AWS Amplify][aws-amplify] is configured and initialized, it is trival to invoke AWS AppSync calls from the web application.  Refer to [AWS Amplify GraphQL Endpoint][aws-amplify-appsync] documentation for more details.
 
 # References
 
