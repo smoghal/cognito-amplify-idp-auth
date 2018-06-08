@@ -220,7 +220,7 @@ The sample React Web Application uses [AWS Amplify][aws-amplify] framework.  The
 - `AWS_COGNITO_IDP_GRANT_FLOW`: possible values are 'code' or 'token'
 
 
-Take a look at `src/index.jsx` and review how [AWS Amplify][aws-amplify] is initially configured before the sample React Web Application starts.  Note that the variables defined in `src/config_dev.jsx` are imported and used for the configuration.
+Refer to `src/index.jsx` and review how [AWS Amplify][aws-amplify] is configured (code snippet below) before the sample React Web Application starts.  Note that the variables defined in `src/config_dev.jsx` are imported and used in [AWS Amplify][aws-amplify] initialization.
 
 ```Javascript
 import Amplify from 'aws-amplify';
