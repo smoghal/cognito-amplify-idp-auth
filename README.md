@@ -90,7 +90,7 @@ Referring to the `Web Application Proxy Quickstart on AWS` section above, the in
 - Using terminal window command prompt, type `nslookup domain_name` to resolve the domain.  It should resolve to two IP addresses.
 
 
-# Download iDP Metadata for Cognito Configuration
+# Download idP Metadata for Cognito Configuration
 
 Download the Metadata XML file that will be used in the following section to configure Cognito SAML Identity Provider.
 
@@ -99,7 +99,7 @@ Download the Metadata XML file that will be used in the following section to con
 
 # Configure Cognito User Pool
 
-The assumption in this section is that a Cognito User Pool has already been created that we will configure with SAML iDP.  If a user pool does not exist, create one with default values.  Note down the `User Pool Id` as it will be used in following sections.
+The assumption in this section is that a Cognito User Pool has already been created that we will configure with SAML idP.  If a user pool does not exist, create one with default values.  Note down the `User Pool Id` as it will be used in following sections.
 
 ### Create App client
 
@@ -152,13 +152,13 @@ Identity Pool is needed by AWS Amplify SDK used in the React web application.  I
 
 # Sign out flow Setup
 
-When `idP Sign out flow` is enabled in Cognito SAML iDP setting, ADFS must be configured with Cognito signing certificate.  This is because Cognito will send a signed signout/logout SAML request to ADFS logout endpoint.  ADFS must also be configured to listen on a SAML Logout end-point where Cognito will post the signout/logout SAML request to.
+When `idP Sign out flow` is enabled in Cognito SAML idP setting, ADFS must be configured with Cognito signing certificate.  This is because Cognito will send a signed signout/logout SAML request to ADFS logout endpoint.  ADFS must also be configured to listen on a SAML Logout end-point where Cognito will post the signout/logout SAML request to.
 
 ### Export Cognito Signing Certificate
 
 This can be done in two ways, using aws CLI or from Cognito dashboard.  Lets cover the CLI:
 
-- Ensure that `aws` cli is setup with appropriate security keys for your AWS account where Cognito User Pool is created and SAML iDP is configured.
+- Ensure that `aws` cli is setup with appropriate security keys for your AWS account where Cognito User Pool is created and SAML idP is configured.
 - Run the following command to extract Cognito signing certificate.  This certificate contains the public key that is used by idP (ADFS) to verify the signed signout/logout SAML request Cognito sends.
 
    `aws cognito-idp get-signing-certificate --user-pool <your user pool id> > cognito.crt`
@@ -183,7 +183,7 @@ Alternatively, the certificate is also visible in Cognito Dashboard.  Go to Fede
 
 ### Disable Certificate Revocation Checks
 
-As a precaution and in order to avoid ADFS exception `ID4037: The key needed to verify the signature could not be resolved` when Cognito triggers the iDP signout flow, disable the ADFS revocation checks as follows:
+As a precaution and in order to avoid ADFS exception `ID4037: The key needed to verify the signature could not be resolved` when Cognito triggers the idP signout flow, disable the ADFS revocation checks as follows:
 
 - Launch Windows PowerShell in ADFS1
 - List all relaying parties and revocation check settings using Windows PowerShell:
