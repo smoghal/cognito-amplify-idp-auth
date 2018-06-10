@@ -5,7 +5,7 @@ const AppHeader = () => (
   <div className="header-page">
     <Header attached="top" textAlign="center">
       <div className="nav-logo">&nbsp;</div>
-      Cognito Userpool Authentication - Custom UI
+      Cognito Userpool idP Auth
     </Header>
   </div>
 );
