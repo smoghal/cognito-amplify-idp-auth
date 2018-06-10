@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
 import { Segment, Button } from 'semantic-ui-react';
 import { Hub } from 'aws-amplify';
-import config from './config_dev';
+import config from '../../config_dev';
 
 /**
  * This component is only called by Cognito during idP Signout flow

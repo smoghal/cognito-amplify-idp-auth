@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Auth} from 'aws-amplify';
 import { Segment, Button } from 'semantic-ui-react';
 import _ from 'lodash';
-import config from './config_dev';
+import config from '../../config_dev';
 
 class Signin extends Component {
 
