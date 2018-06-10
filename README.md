@@ -7,12 +7,12 @@
 
 # Overview
 
-This sample web application demonstrate how to use AWS Amplify with a Cognito User Pool which integrates with a SAML identity provider (ADFS). There are a few goals of this exercise:
+Sample web application provided in this repo demonstrates how to use AWS Amplify with a Cognito User Pool which is integrated with a SAML identity provider (ADFS).  Before the web application can be used, Cognito and ADFS must be configured properly.  This document:
 
-- Outline steps necessary to configure ADFS for Cognito User Pool integration
-- Highlight the necessary configuration that must be done in Cognito User Pool and Cognito Identity Pool
-- Demonstate how it is possible to avoid using Cognito Hosted UI in a web application
-- Show case the power of AWS Amplify for web applications and how easy it is to integrate with Cognito User Pool for Authentication
+- Outlines steps necessary to configure ADFS for Cognito User Pool integration
+- Highlights necessary configuration that must be done in Cognito User Pool and Cognito Identity Pool
+- Demonstates how it is possible to avoid using Cognito Hosted UI in a web application
+- Show cases the power of AWS Amplify for web applications and how easy it is to integrate with Cognito User Pool for Authentication
 
 # Identity Provider Setup
 
