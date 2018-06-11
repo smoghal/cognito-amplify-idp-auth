@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import SignIn from './auth/signin';
@@ -91,11 +90,5 @@ class App extends Component {
     );
   }
 }
-
-// Runtime type checking for React props
-App.propTypes = {
-  authenticated: PropTypes.bool,
-  history: PropTypes.object
-};
 
 export default App;
