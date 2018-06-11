@@ -34,9 +34,9 @@ class Main extends Component {
 
   signOut() {
     console.log('Main.signout()');
-    const {
-      history
-    } = this.props;
+    // const {
+    //   history
+    // } = this.props;
 
     Auth.signOut()
       .then( data => {
