@@ -25,8 +25,7 @@ class Main extends Component {
     console.log('Main.constructor():');
 
     this.state = {
-      visible: true,
-      signedOut: false
+      visible: true
     };
 
     this.signOut = this.signOut.bind(this);
@@ -42,12 +41,12 @@ class Main extends Component {
       .then( data => {
         console.log('Main.signOut():Auth.signOut() data:', data);
 
-        this.setState({signedOut: true});
+        //this.setState({signedOut: true});
         //history.push('/', {signInFailure: false, errorMessage: '', authenticated: false});
       })
       .catch(err => {
         console.error('Main.signOut():Auth.signOut() err:', err);
-        this.setState({signedOut: false});
+        //this.setState({signedOut: false});
       });
   }
 
