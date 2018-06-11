@@ -18,7 +18,7 @@ class Signin extends Component {
 
     if (_.isUndefined(signInFailure) || _.isNull(signInFailure) ) {
       console.log('Signin.componentDidMount(): redirecting to cognito signin');
-      // this.signIn();
+      this.signIn();
     } else {
       console.log('Signin.componentDidMount(): show Login again button');
     }
@@ -32,7 +32,7 @@ class Signin extends Component {
       redirectSignOut,
       responseType } = authConfig.oauth;
 
-    const clientId = config.userPoolWebClientId;
+    const clientId = config.AWS_COGNITO_CLIENT_ID;
     const url = `https://${domain}/oauth2/authorize?identity_provider=${config.AWS_COGNITO_IDP_NAME}&redirect_uri=${redirectSignIn}&response_type=${responseType}&client_id=${clientId}`;
 
     console.log('onSignIn() sign url: ', url);
@@ -74,6 +74,7 @@ class Signin extends Component {
 
 // Runtime type checking for React props
 Signin.propTypes = {
+  authenticated: PropTypes.bool,
   signInFailure: PropTypes.bool,
   errorMessage: PropTypes.string
 };

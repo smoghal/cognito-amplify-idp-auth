@@ -23,7 +23,10 @@ class Main extends Component {
   constructor(props) {
     super(props);
 
+    console.log('Main.constructor():');
+
     this.state = {
+      visible: true,
       signedOut: false
     };
 
@@ -41,7 +44,7 @@ class Main extends Component {
         console.log('Main.signOut():Auth.signOut() data:', data);
 
         this.setState({signedOut: true});
-        history.push('/login');
+        //history.push('/', {signInFailure: false, errorMessage: '', authenticated: false});
       })
       .catch(err => {
         console.error('Main.signOut():Auth.signOut() err:', err);
@@ -52,6 +55,9 @@ class Main extends Component {
   /* eslint-disable react/jsx-handler-names */
   render() {
     const { visible } = this.state || {};
+
+    console.log('Main.render() state', this.state);
+    console.log('Main.render() props', this.props);
 
     return (
       <div className="main">

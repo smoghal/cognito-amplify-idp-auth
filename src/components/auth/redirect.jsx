@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
 import { Segment } from 'semantic-ui-react';
 import { Hub } from 'aws-amplify';
+import _ from 'lodash';
 
 class Redirect extends Component {
   constructor(props) {
@@ -19,6 +20,15 @@ class Redirect extends Component {
     this.validateUserSession.bind(this);
 
     Hub.listen('auth', this, 'MyListener');
+  }
+
+  componentDidMount() {
+
+    // we have previously logged in and we are being redirected again.
+    // onHubCapsule() won't fire in this case. So lets invoke validateSession()
+    if (_.isUndefined(this.props.authenticated) || this.props.authenticated == false) {
+      this.validateUserSession();
+    }
   }
 
   onHubCapsule(capsule) {
@@ -71,7 +81,7 @@ class Redirect extends Component {
                 refreshToken: session.refreshToken.token
               });
 
-              history.push('/main', {signedIn: true});
+              history.push('/main', {signedIn: true, authenticated: true});
             } else {
               // fire user is unauthenticated
               const errorMessage = 'user session invalid. auth required';
@@ -85,7 +95,7 @@ class Redirect extends Component {
               });
 
               console.log(errorMessage);
-              history.push('/login', {signInFailure: true, errorMessage});
+              history.push('/signin', {signInFailure: true, errorMessage, authenticated: false});
             }
           })
           .catch(err => {
@@ -100,7 +110,7 @@ class Redirect extends Component {
             });
 
             console.error('actions.validateUserSession():Auth.userSession() err:', err);
-            history.push('/login', {signInFailure: true, errorMessage});
+            history.push('/signin', {signInFailure: true, errorMessage, authenticated: false});
           });
       })
       .catch(err => {
@@ -115,7 +125,7 @@ class Redirect extends Component {
         });
 
         console.error('actions.validateUserSession():Auth.currentAuthenticatedUser() err:', err);
-        history.push('/login', {signInFailure: true, errorMessage});
+        history.push('/signin', {signInFailure: true, errorMessage, authenticated: false});
       });
   }
 
@@ -162,7 +172,8 @@ class Redirect extends Component {
 
 // Runtime type checking for React props
 Redirect.propTypes = {
-  history: PropTypes.object,
+  authenticated: PropTypes.bool,
+  history: PropTypes.object
 };
 
 export default Redirect;

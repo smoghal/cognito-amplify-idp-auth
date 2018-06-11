@@ -74,6 +74,7 @@ class Signout extends Component {
 
         //history.push('/');
         this.setState({signedOut: true});
+        history.push('/', {signInFailure: true, errorMessage: '', authenticated: false});
 
       })
       .catch(err => {
@@ -136,6 +137,7 @@ class Signout extends Component {
 
 // Runtime type checking for React props
 Signout.propTypes = {
+  authenticated: PropTypes.bool,
   history: PropTypes.object,
   errorMessage: PropTypes.string
 };
