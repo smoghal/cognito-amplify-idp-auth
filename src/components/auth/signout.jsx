@@ -18,9 +18,6 @@ class Signout extends Component {
     super(props);
 
     this.state = {
-      accessToken: '',
-      idToken: '',
-      refreshToken: '',
       signedOut: false
     };
 
@@ -86,9 +83,6 @@ class Signout extends Component {
   /* eslint-disable react/jsx-handler-names */
   render() {
     const {
-      accessToken,
-      idToken,
-      refreshToken,
       signedOut
     } = this.state;
 
@@ -115,20 +109,6 @@ class Signout extends Component {
           </div>
         )}
 
-        <div>
-          <span>access token:</span>
-          <span>{accessToken}</span>
-        </div>
-
-        <div>
-          <span>id token:</span>
-          <span>{idToken}</span>
-        </div>
-
-        <div>
-          <span>refresh token:</span>
-          <span>{refreshToken}</span>
-        </div>
       </Segment>
     );
   }
