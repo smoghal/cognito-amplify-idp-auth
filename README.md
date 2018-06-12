@@ -1,7 +1,7 @@
 # Table of Contents
 * [Overview](#overview)
 * [Identity Provider Setup](#identity-provider-setup)
-* [Cognito Setup](#cognito-seutp)
+* [Cognito Setup](#cognito-setup)
 * [Web Application Developer Guide](#web-application-developer-guide)
 * [Native Application Developer Guide](#native-application-developer-guide)
 
