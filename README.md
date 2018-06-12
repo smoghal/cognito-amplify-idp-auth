@@ -194,8 +194,8 @@ This section assumes that a Cognito User Pool exists and it will be configured w
 
 - Go to App Integration > App Client Settings and check `adfs` (your new SAML provider) under `Enabled Id Provider`
 - Under `Sign in and sign out URLs` set as follows (note these URLs use `localhost` hostname which is only used in development configuration.  In a production configuration, the URLs will point to a Route53 or CloudFront enabled application URL)
-  * Callback URL: http://localhost:8080/redirect
-  * Signout URL: http://localhost:8080/redirect
+  * Callback URL(s): http://localhost:8080/redirect
+  * Sign out URL(s): http://localhost:8080/redirect
 - Under `OAuth 2.0`, select `Authorization code grant` and `Implicit grant`
 - Under `Allowed OAuth Scopes`, only check `phone`, `email`, `openid`, `aws.cognito.signin.user.admin`.  Refer to the [blog post][blog1] for more details.
 
