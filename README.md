@@ -71,7 +71,7 @@ Follow these steps to configure ADFS:
     - Mapping of Attributes
       * LDAP: E-Mail-Address
       * Outgoing Claim: E-Mail Address
-- Launch PowerShell and type `Get-AdfsProperties` to get ADFS URL.  Note that the URL will be in this format `https://sts.<your_domain>/adfs/ls`.  Once ADFS and Cognito configuration are done, use the login URL to test ADFS login is successful.  The Login URL is `https://sts.<your_domain>/adfs/ls/idpinitiatedsignon.htm`
+- Launch PowerShell and type `Get-AdfsProperties` to get ADFS properties; one of the properties is the login URL for ADFS that is publically accessible.  Note that the URL will be in this format `https://sts.<your_domain>/adfs/ls`.  Once ADFS and Cognito configuration are done, use the login URL to test ADFS login is successful.  The Login URL is `https://sts.<your_domain>/adfs/ls/idpinitiatedsignon.htm`
 
 ## Domain Controller Setup
 
@@ -92,7 +92,7 @@ Follow these steps to configure DC1 (primary domain controller):
 
 ## Domain Name Setup
 
-Referring to the `Web Application Proxy Quickstart on AWS` section above, the installation assumes a resolvable domain name.  Create A Record to point the public IP address of WAP1 and WAP1.  It is normal to have two A Records created for a domain.  This is a cheap way to perform DNS based load balancing.
+Referring to the `Web Application Proxy Quickstart on AWS` section above, the installation assumes a resolvable domain name.  Create DNS `A Record` to point the public IP address of WAP1 and WAP1.  It is normal to have two A Records created for a domain.  This is a cheap way to perform DNS based load balancing.
 
 - Log in your DNS provider dashboard (We will assume AWS Route53)
 - Create a Hosted Zone (if one doesn't exist) for your domain
@@ -145,8 +145,10 @@ As a precaution and in order to avoid ADFS exception `ID4037: The key needed to 
 
 - Launch Windows PowerShell in ADFS1
 - List all relaying parties and revocation check settings using Windows PowerShell:
+
   `Get-AdfsRelyingPartyTrust | Select-Object Identifier, SigningCertificateRevocationCheck, EncryptionCertificateRevocationCheck`
 - Disable Revocation Check as follows.  Note that the `Identifier URL` is visible in the previous command.  It is the identifier URL that was set in ADFS configuration earlier and is in the format `urn:amazon:cognito:sp:<user_pool_id>`
+
   `Get-AdfsRelyingPartyTrust -Identifier <Identifier URL> | Set-AdfsRelyingPartyTrust -SigningCertificateRevocationCheck None -EncryptionCertificateRevocationCheck None`
 
 ### Create SAML Logout Endpoint
@@ -158,9 +160,10 @@ While still in ADFS1 node
 - Click on the `Endpoints` tab
 - Click on `Add SAML` button.
 - In the Endpoint Dialog, set the following properties for the SAML Logout endpoint
-  * Endpoint type: SAML Logout
-  * Binding: POST
+  * Endpoint type: `SAML Logout`
+  * Binding: `POST`
   * Trusted URL: `https://sts.<your_domain>/adfs/ls`
+  * Response URL: ideally, set it to same signout callback url as in Cognito user pool [OAuth Setting](###configure-oauth).  For testing purposes, you can set it to any URL to ensure that when user signs out, they are redirected properly.
 - Hit OK and then Apply to save changes to `Amazon Cognito` RP.
 
 # Cognito Setup
