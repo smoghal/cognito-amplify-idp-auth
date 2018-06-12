@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
 import { Segment, Button } from 'semantic-ui-react';
-import { Hub } from 'aws-amplify';
 import config from '../../config_dev';
 
 /**
@@ -17,36 +16,7 @@ class Signout extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      signedOut: false
-    };
-
     this.signIn.bind(this);
-    this.signOut.bind(this);
-    Hub.listen('auth', this, 'MyListener');
-  }
-
-  onHubCapsule(capsule) {
-    console.log('onHubCapsule(): ', capsule);
-    const { channel, payload } = capsule;
-
-    if (channel === 'auth') {
-      switch (payload.event) {
-        case 'signIn':
-          console.log('Signout.onHubCapsule() user signed in');
-          break;
-        case 'signUp':
-          console.log('Signout.onHubCapsule() user signed up');
-          break;
-        case 'signOut':
-          console.log('Signout.onHubCapsule() user signed out');
-          this.setState({signedOut: true});
-          break;
-        case 'signIn_failure':
-          console.log('Signout.onHubCapsule() user sign in failed');
-          break;
-      }
-    }
   }
 
   signIn() {
@@ -54,9 +24,10 @@ class Signout extends Component {
     const {
       domain,
       redirectSignIn,
+      redirectSignOut,
       responseType } = authConfig.oauth;
 
-    const clientId = config.userPoolWebClientId;
+    const clientId = config.AWS_COGNITO_CLIENT_ID;
     const url = `https://${domain}/oauth2/authorize?identity_provider=${config.AWS_COGNITO_IDP_NAME}&redirect_uri=${redirectSignIn}&response_type=${responseType}&client_id=${clientId}`;
 
     console.log('onSignIn() sign url: ', url);
@@ -64,34 +35,18 @@ class Signout extends Component {
     window.location.assign(url);
   }
 
-  signOut() {
-    Auth.signOut()
-      .then( data => {
-        console.log('Signout.signOut():Auth.signOut() data:', data);
-
-        //history.push('/');
-        this.setState({signedOut: true});
-        history.push('/', {signInFailure: true, errorMessage: '', authenticated: false});
-
-      })
-      .catch(err => {
-        console.error('Signout.signOut():Auth.signOut() err:', err);
-        this.setState({signedOut: false});
-      });
-  }
-
   /* eslint-disable react/jsx-handler-names */
   render() {
     const {
-      signedOut
-    } = this.state;
+      authenticated
+    } = this.props;
 
     console.log('Signout.render() state: ', this.state);
     console.log('Signout.render() props: ', this.props)
 
     return (
       <Segment>
-        { signedOut && (
+        { !authenticated && (
           <div>
             <span>Signout successful.  Sign in again?</span>
             <Button
@@ -100,7 +55,7 @@ class Signout extends Component {
           </div>
         )}
 
-        { !signedOut && (
+        { authenticated && (
           <div>
             <span>Signout unsuccessful.  Sign out again?</span>
             <Button

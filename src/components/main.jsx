@@ -33,20 +33,15 @@ class Main extends Component {
 
   signOut() {
     console.log('Main.signout()');
-    // const {
-    //   history
-    // } = this.props;
 
     Auth.signOut()
       .then( data => {
         console.log('Main.signOut():Auth.signOut() data:', data);
 
-        //this.setState({signedOut: true});
         //history.push('/', {signInFailure: false, errorMessage: '', authenticated: false});
       })
       .catch(err => {
         console.error('Main.signOut():Auth.signOut() err:', err);
-        //this.setState({signedOut: false});
       });
   }
 
