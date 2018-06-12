@@ -163,7 +163,7 @@ While still in ADFS1 node
   * Endpoint type: `SAML Logout`
   * Binding: `POST`
   * Trusted URL: `https://sts.<your_domain>/adfs/ls`
-  * Response URL: ideally, set it to same signout callback url as in Cognito user pool [OAuth Setting](###configure-oauth).  For testing purposes, you can set it to any URL to ensure that when user signs out, they are redirected properly.
+  * Response URL: ideally, set it to same signout callback url as in Cognito user pool [OAuth Setting](#configure-oauth).  For testing purposes, you can set it to any URL to ensure that when user signs out, they are redirected properly.
 - Hit OK and then Apply to save changes to `Amazon Cognito` RP.
 
 # Cognito Setup
