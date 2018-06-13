@@ -35,7 +35,7 @@ class Signin extends Component {
     const clientId = config.AWS_COGNITO_CLIENT_ID;
     const url = `https://${domain}/oauth2/authorize?identity_provider=${config.AWS_COGNITO_IDP_NAME}&redirect_uri=${redirectSignIn}&response_type=${responseType}&client_id=${clientId}`;
 
-    console.log('onSignIn() sign url: ', url);
+    console.log('Signin.signIn() sign url: ', url);
     // Launch hosted UI
     window.location.assign(url);
   }

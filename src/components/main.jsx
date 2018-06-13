@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import {  Sidebar, Menu, Segment, Label } from 'semantic-ui-react';
@@ -88,5 +89,10 @@ class Main extends Component {
   }
   /* eslint-enable react/jsx-handler-names */
 }
+
+// Runtime type checking for React props
+Main.propTypes = {
+  authenticated: PropTypes.bool
+};
 
 export default Main;

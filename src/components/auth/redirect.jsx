@@ -61,11 +61,11 @@ class Redirect extends Component {
 
     Auth.currentAuthenticatedUser()
       .then(currentAuthUser => {
-        console.log('Signin.validateUserSession():Auth.currentAuthenticatedUser() currentAuthUser:', currentAuthUser);
+        console.log('Redirect.validateUserSession():Auth.currentAuthenticatedUser() currentAuthUser:', currentAuthUser);
         // grab the user session
         Auth.userSession(currentAuthUser)
           .then(session => {
-            console.log('Signin.validateUserSession():Auth.userSession() session:', session);
+            console.log('Redirect.validateUserSession():Auth.userSession() session:', session);
             // finally invoke isValid() method on session to check if auth tokens are valid
             // if tokens have expired, lets call "logout"
             // otherwise, dispatch AUTH_USER success action and by-pass login screen
@@ -109,7 +109,7 @@ class Redirect extends Component {
               refreshToken: ''
             });
 
-            console.error('actions.validateUserSession():Auth.userSession() err:', err);
+            console.error('Redirect.validateUserSession():Auth.userSession() err:', err);
             history.push('/signin', {signInFailure: true, errorMessage, authenticated: false});
           });
       })
@@ -124,7 +124,7 @@ class Redirect extends Component {
           refreshToken: ''
         });
 
-        console.error('actions.validateUserSession():Auth.currentAuthenticatedUser() err:', err);
+        console.error('Redirect.validateUserSession():Auth.currentAuthenticatedUser() err:', err);
         history.push('/signin', {signInFailure: true, errorMessage, authenticated: false});
       });
   }

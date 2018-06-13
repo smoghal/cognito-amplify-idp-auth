@@ -17,6 +17,7 @@ class Signout extends Component {
     super(props);
 
     this.signIn.bind(this);
+    this.signOut.bind(this);
   }
 
   signIn() {
@@ -30,10 +31,26 @@ class Signout extends Component {
     const clientId = config.AWS_COGNITO_CLIENT_ID;
     const url = `https://${domain}/oauth2/authorize?identity_provider=${config.AWS_COGNITO_IDP_NAME}&redirect_uri=${redirectSignIn}&response_type=${responseType}&client_id=${clientId}`;
 
-    console.log('onSignIn() sign url: ', url);
+    console.log('Signout.signIn() sign url: ', url);
     // Launch hosted UI
     window.location.assign(url);
   }
+
+  signOut() {
+    console.log('Main.signout()');
+
+    Auth.signOut()
+      .then( data => {
+        console.log('Signout.signOut():Auth.signOut() data:', data);
+
+        //history.push('/', {signInFailure: false, errorMessage: '', authenticated: false});
+      })
+      .catch(err => {
+        console.error('Signout.signOut():Auth.signOut() err:', err);
+      });
+  }
+
+
 
   /* eslint-disable react/jsx-handler-names */
   render() {
@@ -72,9 +89,7 @@ class Signout extends Component {
 
 // Runtime type checking for React props
 Signout.propTypes = {
-  authenticated: PropTypes.bool,
-  history: PropTypes.object,
-  errorMessage: PropTypes.string
+  authenticated: PropTypes.bool
 };
 
 export default Signout;
