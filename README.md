@@ -14,6 +14,10 @@ Sample web application provided in this repo demonstrates how to use AWS Amplify
 - Demonstates how it is possible to avoid using Cognito Hosted UI in a web application
 - Show cases the power of AWS Amplify for web applications and how easy it is to integrate with Cognito User Pool for Authentication
 
+An overview of the overall Cognito <> ADFS <> Application is shown in the diagram below.
+
+![Federated Auth idP Cognito](Federated_Auth_idP_Cognito.png)
+
 # Identity Provider Setup
 
 A SAML Identity Provider (idP), i.e. ADFS, must be properly configured such that Amazon Cognito can receive SAML request from idP for authentication and user pool federation, and such that idP can also receive signed SAML requests from Amazon Cognito to logout a user.
