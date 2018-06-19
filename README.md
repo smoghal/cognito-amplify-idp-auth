@@ -14,9 +14,28 @@ Sample web application provided in this repo demonstrates how to use AWS Amplify
 - Demonstates how it is possible to avoid using Cognito Hosted UI in a web application
 - Show cases the power of AWS Amplify for web applications and how easy it is to integrate with Cognito User Pool for Authentication
 
-An overview of the overall Cognito <> ADFS <> Application is shown in the diagram below.
+An highlevel overview of Cognito <> ADFS <> User interactions is shown in the diagram below.  In [Identity Provider Setup](#identity-provider-setup) and [Cognito Setup](#cognito-setup) sections, below, we will standup the ADFS infrastructure and configure both ADFS and Cognito.
 
-![Federated Auth idP Cognito](Federated_Auth_idP_Cognito.png)
+But first, lets dive slightly deeper into both the login and logout flows and understand the various interactions between Cognito (relaying party or RP) and ADFS (oauth provider or OP).  Refer to 
+
+
+![Federated Auth idP Cognito](01_arch.png)
+
+## Login Flow
+
+1. Login flow starts with user (or application) invoking Cognito `/login` end-point; user is redirected to Cognito Hosted UI.  Alternatively, user (or application) can directly trigger the federated sign-in process by invoking Cognito end-point `/oauth/authorize`.  Refer to [Cognito Endpoints][cognito-auth-endpoints].
+2. Cognito redirects the user to ADFS login screen
+3. Upon successful login, user is redirect back to Cognito based on the RP configuration done inside [ADFS](#identity-provider-setup) (more to come on this later)
+4. Cognito captures the SAML token and claims sent from ADFS, populates (or update) the user and group information in user pool.  Cognito finally invokes the "Callback URL" that is configured in the [Cognito](#cognito-setup) application client setting (again, lots of details to come below)
+
+## Logout Flow
+
+- A) During the logout flow, user (or application) invokes Cognito's /logout end-point
+- B) Cognito invokes ADFS `SAML Logout Endpoint Trusted URL` with a signed SAML sign-out request.  
+- C) ADFS signs out the user and invokes the `SAML Logout Endpoint Response URL`.  This response URL is Cognito's SAML logout endpoint (more details in [ADFS](#identity-provider-setup) section)
+- D) Cognito invalidates user session and finally redirects the user to application `Sign out URL` configured in the [Cognito](#cognito-setup) application client setting
+
+
 
 # Identity Provider Setup
 
@@ -167,7 +186,7 @@ While still in ADFS1 node
   * Endpoint type: `SAML Logout`
   * Binding: `POST`
   * Trusted URL: `https://sts.<your_domain>/adfs/ls`
-  * Response URL: ideally, set it to same signout callback url as in Cognito user pool [OAuth Setting](#configure-oauth).  For testing purposes, you can set it to any URL to ensure that when user signs out, they are redirected properly.
+  * Response URL: set to `https://<yourDomainPrefix>.auth.<region>.amazoncognito.com/saml2/logout`
 - Hit OK and then Apply to save changes to `Amazon Cognito` RP.
 
 # Cognito Setup
@@ -233,7 +252,15 @@ In order to authenticate with Amazon Cognito, which is configured with a SAML id
 * recommended way to interact with Cognito user pool is by using [AWS Amplify][aws-amplify].
 * web application must be written using React (React Native), Angular 5+/Ionic, VueJS frameworks.
 
-The sample React Web Application uses [AWS Amplify][aws-amplify] framework.  The first step in configuring AWS Amplify for the sample web application is to edit `src/config_dev.jsx`.  Update configuration file properties (below) to match your Cognito configuration before launching or deploying the application.  Contact your infrasrtructure team (or the person responsibile for setting up Cognito and ADFS authentication as documented earlier) to get the values for each of the following fields.
+## Overview
+
+The sample React Web Application uses [AWS Amplify][aws-amplify] framework.
+
+![Federated Auth idP Cognito](02_react_web.png)
+
+
+## Configuration
+The first step in configuring AWS Amplify for the sample web application is to edit `src/config_dev.jsx`.  Update configuration file properties (below) to match your Cognito configuration before launching or deploying the application.  Contact your infrasrtructure team (or the person responsibile for setting up Cognito and ADFS authentication as documented earlier) to get the values for each of the following fields.
 
 - `AWS_REGION`: cognito pool region,
 - `AWS_COGNITO_IDENTITY_POOL_ID`: identity pool id
@@ -282,6 +309,7 @@ TBD
 # References
 
 - https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-provider.html
+- https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-managing-saml-idp-console.html
 - https://aws.amazon.com/blogs/mobile/amazon-cognito-user-pools-supports-federation-with-saml/
 - https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-app-idp-settings.html
 - https://aws.amazon.com/blogs/security/enabling-federation-to-aws-using-windows-active-directory-adfs-and-saml-2-0/
@@ -289,10 +317,9 @@ TBD
 - https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/best-practices-securing-ad-fs
 - https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/ee892363(v=technet.10)#examples
 
-[cognito-setup-guide]: docs/cogito-setup.md
-[idp-seutp-guide]: docs/idp-setup.md
-[dev-guide]: docs/dev-guide.md
 [aws-wap-adfs-quickstart]: https://aws.amazon.com/quickstart/architecture/wap-adfs/
 [blog1]: https://aws.amazon.com/blogs/mobile/amazon-cognito-user-pools-supports-federation-with-saml/
 [aws-amplify]: https://aws.github.io/aws-amplify/media/developer_guide
 [aws-amplify-appsync]: https://aws.github.io/aws-amplify/media/api_guide#working-with-graphql-endpoints
+[cognito-idp-setup]: https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-managing-saml-idp-console.html
+[cognito-auth-endpoints]: https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-userpools-server-contract-reference.html
