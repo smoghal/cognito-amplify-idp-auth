@@ -304,6 +304,12 @@ Review the rest of the sample React Web Application to understand how [AWS Ampli
 
 # Native Application Developer Guide
 
+## Overview
+
+![Federated Auth idP Cognito](03_swift_ios.png)
+
+## Configuration
+
 TBD
 
 # References
