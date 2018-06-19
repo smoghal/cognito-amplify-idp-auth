@@ -1,0 +1,6 @@
+framework module AWSCognitoAuth {
+  umbrella header "AWSCognitoAuth-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,402 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A61BB9920D167D1001348A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A61BB9820D167D1001348A3 /* AppDelegate.swift */; };
+		1A61BB9B20D167D1001348A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A61BB9A20D167D1001348A3 /* ViewController.swift */; };
+		1A61BB9E20D167D1001348A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A61BB9C20D167D1001348A3 /* Main.storyboard */; };
+		1A61BBA020D167D1001348A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A61BB9F20D167D1001348A3 /* Assets.xcassets */; };
+		1A61BBA320D167D1001348A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A61BBA120D167D1001348A3 /* LaunchScreen.storyboard */; };
+		845FFC2157ECD7DF9C66EEA9 /* Pods_CognitoIDPAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1744C0C5F2E60FC38AFCE82A /* Pods_CognitoIDPAuth.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1744C0C5F2E60FC38AFCE82A /* Pods_CognitoIDPAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CognitoIDPAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A61BB9520D167D1001348A3 /* CognitoIDPAuth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CognitoIDPAuth.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A61BB9820D167D1001348A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1A61BB9A20D167D1001348A3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1A61BB9D20D167D1001348A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1A61BB9F20D167D1001348A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1A61BBA220D167D1001348A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1A61BBA420D167D1001348A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		247619B2C2A6BB8581C85674 /* Pods-CognitoIDPAuth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CognitoIDPAuth.release.xcconfig"; path = "Pods/Target Support Files/Pods-CognitoIDPAuth/Pods-CognitoIDPAuth.release.xcconfig"; sourceTree = "<group>"; };
+		4EE3D8A53B5F0E1F37ACB25E /* Pods-CognitoIDPAuth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CognitoIDPAuth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CognitoIDPAuth/Pods-CognitoIDPAuth.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A61BB9220D167D1001348A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				845FFC2157ECD7DF9C66EEA9 /* Pods_CognitoIDPAuth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A61BB8C20D167D1001348A3 = {
+			isa = PBXGroup;
+			children = (
+				1A61BB9720D167D1001348A3 /* CognitoIDPAuth */,
+				1A61BB9620D167D1001348A3 /* Products */,
+				9B2B654E015D10C42285EF85 /* Pods */,
+				3B036E5E429985882C4C9A63 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1A61BB9620D167D1001348A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A61BB9520D167D1001348A3 /* CognitoIDPAuth.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A61BB9720D167D1001348A3 /* CognitoIDPAuth */ = {
+			isa = PBXGroup;
+			children = (
+				1A61BB9820D167D1001348A3 /* AppDelegate.swift */,
+				1A61BB9A20D167D1001348A3 /* ViewController.swift */,
+				1A61BB9C20D167D1001348A3 /* Main.storyboard */,
+				1A61BB9F20D167D1001348A3 /* Assets.xcassets */,
+				1A61BBA120D167D1001348A3 /* LaunchScreen.storyboard */,
+				1A61BBA420D167D1001348A3 /* Info.plist */,
+			);
+			path = CognitoIDPAuth;
+			sourceTree = "<group>";
+		};
+		3B036E5E429985882C4C9A63 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1744C0C5F2E60FC38AFCE82A /* Pods_CognitoIDPAuth.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9B2B654E015D10C42285EF85 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4EE3D8A53B5F0E1F37ACB25E /* Pods-CognitoIDPAuth.debug.xcconfig */,
+				247619B2C2A6BB8581C85674 /* Pods-CognitoIDPAuth.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A61BB9420D167D1001348A3 /* CognitoIDPAuth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A61BBA720D167D1001348A3 /* Build configuration list for PBXNativeTarget "CognitoIDPAuth" */;
+			buildPhases = (
+				8E61AC1BA409CCD10DB3B322 /* [CP] Check Pods Manifest.lock */,
+				1A61BB9120D167D1001348A3 /* Sources */,
+				1A61BB9220D167D1001348A3 /* Frameworks */,
+				1A61BB9320D167D1001348A3 /* Resources */,
+				ADBCC8990648C4169550F27B /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CognitoIDPAuth;
+			productName = CognitoIDPAuth;
+			productReference = 1A61BB9520D167D1001348A3 /* CognitoIDPAuth.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A61BB8D20D167D1001348A3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = Moghals;
+				TargetAttributes = {
+					1A61BB9420D167D1001348A3 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1A61BB9020D167D1001348A3 /* Build configuration list for PBXProject "CognitoIDPAuth" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1A61BB8C20D167D1001348A3;
+			productRefGroup = 1A61BB9620D167D1001348A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A61BB9420D167D1001348A3 /* CognitoIDPAuth */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A61BB9320D167D1001348A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A61BBA320D167D1001348A3 /* LaunchScreen.storyboard in Resources */,
+				1A61BBA020D167D1001348A3 /* Assets.xcassets in Resources */,
+				1A61BB9E20D167D1001348A3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8E61AC1BA409CCD10DB3B322 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CognitoIDPAuth-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADBCC8990648C4169550F27B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CognitoIDPAuth/Pods-CognitoIDPAuth-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSAuthCore/AWSAuthCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoAuth/AWSCognitoAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSMobileClient/AWSMobileClient.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAuthCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProviderASF.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSMobileClient.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CognitoIDPAuth/Pods-CognitoIDPAuth-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A61BB9120D167D1001348A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A61BB9B20D167D1001348A3 /* ViewController.swift in Sources */,
+				1A61BB9920D167D1001348A3 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1A61BB9C20D167D1001348A3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A61BB9D20D167D1001348A3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1A61BBA120D167D1001348A3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A61BBA220D167D1001348A3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1A61BBA520D167D1001348A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1A61BBA620D167D1001348A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1A61BBA820D167D1001348A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4EE3D8A53B5F0E1F37ACB25E /* Pods-CognitoIDPAuth.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 73FLCA9GF8;
+				INFOPLIST_FILE = CognitoIDPAuth/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.moghals.CognitoIDPAuth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1A61BBA920D167D1001348A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 247619B2C2A6BB8581C85674 /* Pods-CognitoIDPAuth.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 73FLCA9GF8;
+				INFOPLIST_FILE = CognitoIDPAuth/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.moghals.CognitoIDPAuth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A61BB9020D167D1001348A3 /* Build configuration list for PBXProject "CognitoIDPAuth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A61BBA520D167D1001348A3 /* Debug */,
+				1A61BBA620D167D1001348A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A61BBA720D167D1001348A3 /* Build configuration list for PBXNativeTarget "CognitoIDPAuth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A61BBA820D167D1001348A3 /* Debug */,
+				1A61BBA920D167D1001348A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A61BB8D20D167D1001348A3 /* Project object */;
+}

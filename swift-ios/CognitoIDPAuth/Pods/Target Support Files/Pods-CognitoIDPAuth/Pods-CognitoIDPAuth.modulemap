@@ -1,0 +1,6 @@
+framework module Pods_CognitoIDPAuth {
+  umbrella header "Pods-CognitoIDPAuth-umbrella.h"
+
+  export *
+  module * { export * }
+}
