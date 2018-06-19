@@ -8,7 +8,7 @@ package-lock.json
 
 # IntelliJ
 *.iml
-/.idea
+.idea
 
 # production
 /build
@@ -23,3 +23,6 @@ package-lock.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Xcode
+xcuserdata
