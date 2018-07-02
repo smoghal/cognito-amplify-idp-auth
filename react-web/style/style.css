@@ -92,8 +92,23 @@ html,body {
 .main .pushable>.pusher {
   margin-right: 150px;
 }
-.main .pushable .welcome-page {
+/* .main .pushable .welcome-page {
   margin-top: 17vh !important
+} */
+
+.main .pushable .welcome-header {
+  padding: 0;
+}
+.main .pushable .welcome-header .welcome-header-right {
+  margin: 0;
+}
+
+.main .pushable .segment-left,
+.main .pushable .segment-right {
+  text-align: initial;
+  overflow-x: hidden;
+  width: 50% !important;
+  word-break: break-all;
 }
 
 /*

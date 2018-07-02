@@ -3,13 +3,8 @@ import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import {  Sidebar, Menu, Segment, Label } from 'semantic-ui-react';
+import WelcomeScreen from './welcome';
 
-const WelcomeScreen = () => (
-  <Segment basic textAlign="center" className="welcome-page">
-    <Label basic size="large">Welcome</Label>
-    <p>Super secret contents</p>
-  </Segment>
-);
 
 // Custom Route component that passes a property ('mode') to the routed component
 const RouteWithProps = ({ component: ReactComponent, mode, ...rest}) => {
