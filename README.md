@@ -193,6 +193,10 @@ While still in ADFS1 node
 
 This section assumes that a Cognito User Pool exists and it will be configured with SAML idP.  If a user pool does not exist, create one with default values.  Note down the `User Pool Id` as it will be used in following sections.
 
+Also, note that there are two App Clients needed, one for React Web applicaiton and another for Swift iOS native application.
+
+## React Web App Client
+
 ### Create App client
 
 - Go to General Settings > App clients.  Add a new app client.  Make sure `Generate client secret` is unchecked.  Note down the `App client id` of the new app client.  This will be used later.
@@ -329,3 +333,8 @@ TBD
 [aws-amplify-appsync]: https://aws.github.io/aws-amplify/media/api_guide#working-with-graphql-endpoints
 [cognito-idp-setup]: https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-managing-saml-idp-console.html
 [cognito-auth-endpoints]: https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-userpools-server-contract-reference.html
+[adfs-group-setup-1]: https://aws.amazon.com/blogs/security/how-to-set-up-sso-to-the-aws-management-console-for-multiple-accounts-by-using-ad-fs-and-saml-2-0/
+[adfs-group-setup-2]: https://aws.amazon.com/blogs/security/aws-federated-authentication-with-active-directory-federation-services-ad-fs/
+[adfs-group-setup-3]: https://social.technet.microsoft.com/wiki/contents/articles/8008.ad-fs-2-0-selectively-send-group-membership-s-as-a-claim.aspx
+[adfs-group-setup-4]: https://blogs.technet.microsoft.com/askds/2011/10/07/ad-fs-2-0-claims-rule-language-primer/
+[adfs-group-setup-5]: https://moorereason.wordpress.com/2013/10/08/the-swamp-of-adfs-claims-rules/
