@@ -16,6 +16,7 @@ class Redirect extends Component {
       signedIn: false,
       errorMessage: ''
     };
+    this.interval = null;
 
     this.validateUserSession.bind(this);
 
@@ -26,8 +27,19 @@ class Redirect extends Component {
 
     // we have previously logged in and we are being redirected again.
     // onHubCapsule() won't fire in this case. So lets invoke validateSession()
-    if (_.isUndefined(this.props.authenticated) || this.props.authenticated == false) {
-      this.validateUserSession();
+
+    // Firefox/Safari bug -- wait for 2+ seconds before calling validate
+    this.interval = setInterval(() => {
+      clearInterval(this.interval);
+      if (_.isUndefined(this.props.authenticated) || this.props.authenticated == false) {
+        this.validateUserSession();
+      }
+    }, 2000);
+  }
+
+  componentWillUnmount() {
+    if (!_.isUndefined(this.interval) && !_.isNull(this.interval)) {
+      clearInterval(this.interval);
     }
   }
 
@@ -141,29 +153,17 @@ class Redirect extends Component {
 
     return (
       <Segment>
-        { signedIn && (
+        { signedIn && !errorMessage && (
           <span>Login successful...</span>
         )}
 
-        { !signedIn && (
-          <span>Login error: {errorMessage}</span>
+        { !signedIn && !errorMessage && (
+          <span>Please wait...</span>
         )}
 
-        {/* <div>
-          <span>access token:</span>
-          <span>{accessToken}</span>
-        </div>
-
-        <div>
-          <span>id token:</span>
-          <span>{idToken}</span>
-        </div>
-
-        <div>
-          <span>refresh token:</span>
-          <span>{refreshToken}</span>
-        </div> */}
-
+        { errorMessage && (
+          <span>Login error: {errorMessage}</span>
+        )}
       </Segment>
     );
   }
