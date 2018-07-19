@@ -21,6 +21,7 @@ class Welcome extends Component {
     this.dumpToken.bind(this);
     this.handleClick.bind(this);
     this.startSessionIdleCount.bind(this);
+    this.handleUpdateAttributes.bind(this);
   }
 
   componentDidMount() {
@@ -154,6 +155,26 @@ class Welcome extends Component {
     this.validateUserSession();
   }
 
+  handleUpdateAttributes(event) {
+    console.log('Welcome.handleUpdateAttributes() called', event);
+    Auth.currentAuthenticatedUser()
+      .then(user => {
+        console.log('Welcome.handleUpdateAttributes() Auth.currentAuthenticatedUser() result:', user);
+
+        Auth.updateUserAttributes(user, {'custom:is_admin': '0'})
+          .then(result => {
+            console.log('Welcome.handleUpdateAttributes() Auth.updateUserAttributes result:', result);
+          })
+          .catch(err => {
+            console.log('Welcome.handleUpdateAttributes() Auth.updateUserAttributes error:', err);
+          });
+      })
+      .catch(err => {
+        console.log('Welcome.handleUpdateAttributes() Auth.currentAuthenticatedUser() error:', err);
+      });
+
+  }
+
   /* eslint-disable react/jsx-handler-names */
   render() {
     const {
@@ -178,6 +199,7 @@ class Welcome extends Component {
               {!validating && (
                 <Button onClick={e => (this.handleClick(e))}>Validate Session</Button>
               )}
+              <Button onClick={e => (this.handleUpdateAttributes(e))}>Update Custom Attribute</Button>
 
             </Header>
           </Segment>
