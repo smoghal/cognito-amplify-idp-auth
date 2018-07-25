@@ -11,12 +11,12 @@ Sample web application provided in this repo demonstrates how to use AWS Amplify
 
 - Outlines steps necessary to configure ADFS for Cognito User Pool integration
 - Highlights necessary configuration that must be done in Cognito User Pool and Cognito Identity Pool
-- Demonstates how it is possible to avoid using Cognito Hosted UI in a web application
+- Demonstrates how it is possible to avoid using Cognito Hosted UI in a web application
 - Show cases the power of AWS Amplify for web applications and how easy it is to integrate with Cognito User Pool for Authentication
 
 An highlevel overview of Cognito <> ADFS <> User interactions is shown in the diagram below.  In [Identity Provider Setup](#identity-provider-setup) and [Cognito Setup](#cognito-setup) sections, below, we will standup the ADFS infrastructure and configure both ADFS and Cognito.
 
-But first, lets dive slightly deeper into both the login and logout flows and understand the various interactions between Cognito (relaying party or RP) and ADFS (oauth provider or OP).  Refer to 
+But first, let's dive slightly deeper into both the login and logout flows and understand the various interactions between Cognito (relaying party or RP) and ADFS (oauth provider or OP).  Refer to 
 
 
 ![Federated Auth idP Cognito](01_arch.png)
@@ -30,7 +30,7 @@ But first, lets dive slightly deeper into both the login and logout flows and un
 
 ## Logout Flow
 
-- A) During the logout flow, user (or application) invokes Cognito's /logout end-point
+- A) During the logout flow, user (or application) invokes Cognito's `/logout` end-point
 - B) Cognito invokes ADFS `SAML Logout Endpoint Trusted URL` with a signed SAML sign-out request.  
 - C) ADFS signs out the user and invokes the `SAML Logout Endpoint Response URL`.  This response URL is Cognito's SAML logout endpoint (more details in [ADFS](#identity-provider-setup) section)
 - D) Cognito invalidates user session and finally redirects the user to application `Sign out URL` configured in the [Cognito](#cognito-setup) application client setting
@@ -72,31 +72,34 @@ Follow these steps to configure ADFS:
 
 - Connect to RDPGW public IP using Remote Desktop from your computer.
 - Launch Remote Desktop inside the RDPGW and connect to the private IP address of ADFS1 instance.  This is the primary ADFS1 instance.
-- Once connected to ADFS1, launch "ADFS Management" application.
+- Once connected to ADFS1, launch _AD FS Management_ application.
 - Click on `Add Relaying Party Trust`.  It will launch a wizard.  Select `Enter data manually`.  Input the following parameters:
-  * Display Name: Amazon Cognito
-  * Profile: ADFS Profile
+  * Display Name: `Amazon Cognito`
+  * Profile: `AD FS Profile`
   * Certificate: Skip this screen (we will add certificate later)
-  * URL: `https://<domain_prefix>.auth.<region>.amazoncognito.com/saml2/idpresponse` where domain_prefix is Cognito domain in app client and region is where Cognito user pool was created.  Refer to Cognito configuration section for more details
-  * Identifier: `urn:amazon:cognito:sp:<user_pool_id>` where user_pool_id is obtained from Cognito user pool configuration
+  * URL: Check the `Enable support for the SAML 2.0 WebSSO protocol` box. Enter `https://<domain_prefix>.auth.<region>.amazoncognito.com/saml2/idpresponse` where domain_prefix is Cognito domain in app client and region is where Cognito user pool was created.  Refer to Cognito configuration section for more details
+  * Identifier: Add `urn:amazon:cognito:sp:<user_pool_id>` to the list, where user_pool_id is obtained from your Cognito user pool configuration
   * Do not set MFA
   * Select `Permit All Users` on the last screen
 - Add the following claims to `Amazon Cognito` RP (Relaying Party) created above
   * Name ID
-    - Type of rule: Transform Incoming Claim
-    - Incoming Claim Type: Windows Account Name
-    - Outgoing Claim Type: Name ID
-    - Outgoing format identified: Persistent
+    - Claim Rule Template: `Transform an Incoming Claim`
+    - Name of Rule: Enter `Name ID`
+    - Incoming Claim Type: `Windows account name`
+    - Outgoing Claim Type: `Name ID`
+    - Outgoing format identified: `Persistent Identifier`
+    - Keep `Pass through all claim values` selected
   * Email
-    - Type of Rule: Send LDAP Attributes as Claims
-    - Name of Rule: Email
-    - Attribute Store: Active Directory
+    - Type of Rule: `Send LDAP Attributes as Claims`
+    - Name of Rule: Enter `Email`
+    - Attribute Store: `Active Directory`
     - Mapping of Attributes
-      * LDAP: E-Mail-Address
-      * Outgoing Claim: E-Mail Address
-- Launch PowerShell and type `Get-AdfsProperties` to get ADFS properties; one of the properties is the login URL for ADFS that is publically accessible.  Note that the URL will be in this format `https://sts.<your_domain>/adfs/ls`.  Once ADFS and Cognito configuration are done, use the login URL to test ADFS login is successful.  The Login URL is `https://sts.<your_domain>/adfs/ls/idpinitiatedsignon.htm`
+      * LDAP attributes: `E-Mail-Addresses`
+      * Outgoing Claim: `E-Mail Address`
+- Retrieve the login ADFS login URL: Launch PowerShell and type `Get-AdfsProperties` to get ADFS properties; one of the properties is the login URL for ADFS that is publically accessible.  Note that the URL will be in this format `https://sts.<your_domain>/adfs/ls`.  Once ADFS and Cognito configuration are done, use the login URL to test ADFS login is successful. The Login URL is `https://sts.<your_domain>/adfs/ls/idpinitiatedsignon.htm`
+- Enable the Relaying Party: Right click the RP you created, and select `Enable`. Now you should be able to navigate to `https://sts.<your_domain>/adfs/ls/idpinitiatedsignon.htm` in your browser, and see the RP appear in a dropdown.
 
-## Domain Controller Setup
+## Domain Controller: Create Test Users
 
 Follow these steps to configure DC1 (primary domain controller):
 
@@ -151,11 +154,11 @@ Alternatively, the certificate is also visible in Cognito Dashboard.  Go to Fede
 ### Import Cognito Signing Certificate in ADFS
 
 - Log into ADFS1 instance using Remote Desktop
-- Make sure that the `cogito.crt` file (above) is available on the local windows file system on ADFS1
-- Launch `ADFS Management` application
+- Make sure that the `cogito.crt` file (above) is available on the local windows file system on ADFS1. You can leverage the clipboard to copy and paste the content of the file to the RDP session.
+- Launch `AD FS Management` application
 - Navigate to ADFS > Trust Relationships > Relaying Party Trust.  Select `Amazon Cognito` Relaying Party (or the name of your RP you created in previous steps for Cognito).  Double click on the RP to bring up its properties.
 - In this Properties window, switch to `Signature` tab.
-- Click `Add` button and import the `cognito.crt` signing certificate
+- Click `Add` button and import the `cognito.crt` signing certificate. If you don't see your `.crt` file, make sure you select `All Files("*")` at the bottom right of the file selection popup.
 - Once imported, double click on the certificate to bring up the Certificate Properties.  Click on `Install Certificate` button
 - Choose `Local Machine` under `Store Location`.  Click `Next`.
 - Select `Place certificate in following store` and click `Browse` button
@@ -178,8 +181,8 @@ As a precaution and in order to avoid ADFS exception `ID4037: The key needed to 
 
 While still in ADFS1 node
 
-- Launch `ADFS Management` application
-- Navigate to ADFS > Trust Relationships > Relaying Party Trust and choose `Amazon Cognito` RP.  Double click on it to bring its properties
+- Launch `AD FS Management` application
+- Navigate to ADFS > Trust Relationships > Relaying Party Trust and choose `Amazon Cognito` RP or the one you created above.  Double click on it to bring its properties
 - Click on the `Endpoints` tab
 - Click on `Add SAML` button.
 - In the Endpoint Dialog, set the following properties for the SAML Logout endpoint
@@ -188,6 +191,7 @@ While still in ADFS1 node
   * Trusted URL: `https://sts.<your_domain>/adfs/ls`
   * Response URL: set to `https://<yourDomainPrefix>.auth.<region>.amazoncognito.com/saml2/logout`
 - Hit OK and then Apply to save changes to `Amazon Cognito` RP.
+
 
 # Cognito Setup
 
@@ -224,18 +228,18 @@ Also, note that there are two App Clients needed, one for React Web applicaiton 
   * Callback URL(s): http://localhost:8080/redirect
   * Sign out URL(s): http://localhost:8080/redirect
 - Under `OAuth 2.0`, select `Authorization code grant` and `Implicit grant`
-- Under `Allowed OAuth Scopes`, only check `phone`, `email`, `openid`, `aws.cognito.signin.user.admin`.  Refer to the [blog post][blog1] for more details.
+- Under `Allowed OAuth Scopes`, only check `phone`, `email`, `openid`, and `profile`. Don't select `aws.cognito.signin.user.admin` if you don't want the users to have the ability to perform admin functionalities such as changing passwords. In our case, since users are managed in the Active Directory, we don't want this box checked.  Refer to the [blog post][blog1] for more details.
 
 ### Configure SAML Attribute Mapping
 
 - Go to Federation > Attribute Mapping.  Click SAML
 - Select your SAML provider from the drop down
 - Set the following mapping:
-  * Catpure: Checked
-  * SAML Attribute: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress (you can refer to FederationMetadata.xml downloaded earlier for more information on the claim and exact url.  If there are other claims you want to map, refer to this file.)
-  * User pool attribute: Email
+  * Capture: Checked
+  * SAML Attribute: `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress` (you can refer to FederationMetadata.xml downloaded earlier for more information on the claim and exact url.  If there are other claims you want to map, refer to this file.)
+  * User pool attribute: `Email`
 
-Note: It is possible to capture custom User Pool attriubtes here as well.  To map custom attributes, make sure that the custom attribute are both read and write enabled by going to General Setting > App Clients > Show Details > Set attribute read and write permissions.  Select the custom attribute in both read and write columns and hit `Save app client changes`
+Note: It is possible to capture custom User Pool attributes here as well.  To map custom attributes, make sure that the custom attributes are both read and write enabled by going to General Setting > App Clients > Show Details > Set attribute read and write permissions.  Select the custom attribute in both read and write columns and hit `Save app client changes`
 
 ### Create Identity Pool
 
