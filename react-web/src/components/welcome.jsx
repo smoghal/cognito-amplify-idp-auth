@@ -5,7 +5,6 @@ import { Segment, Header, Label, Button } from 'semantic-ui-react';
 import _ from 'lodash';
 
 class Welcome extends Component {
-
   constructor(props) {
     super(props);
 
@@ -25,14 +24,13 @@ class Welcome extends Component {
   }
 
   componentDidMount() {
-
     // we have previously logged in and we are being redirected again.
     // onHubCapsule() won't fire in this case. So lets invoke validateSession()
     if (_.isUndefined(this.props.authenticated) || this.props.authenticated == false) {
       this.validateUserSession();
     }
 
-    //this.startSessionIdleCount();
+    // this.startSessionIdleCount();
   }
 
   componentWillUnmount() {
@@ -99,7 +97,7 @@ class Welcome extends Component {
               });
 
               console.log(errorMessage);
-              history.push('/signin', {signInFailure: true, errorMessage, authenticated: false});
+              history.push('/signin', { signInFailure: true, errorMessage, authenticated: false });
             }
           })
           .catch(err => {
@@ -114,7 +112,7 @@ class Welcome extends Component {
             });
 
             console.error('Welcome.validateUserSession():Auth.userSession() err:', err);
-            history.push('/signin', {signInFailure: true, errorMessage, authenticated: false});
+            history.push('/signin', { signInFailure: true, errorMessage, authenticated: false });
           });
       })
       .catch(err => {
@@ -129,7 +127,7 @@ class Welcome extends Component {
         });
 
         console.error('Welcome.validateUserSession():Auth.currentAuthenticatedUser() err:', err);
-        history.push('/signin', {signInFailure: true, errorMessage, authenticated: false});
+        history.push('/signin', { signInFailure: true, errorMessage, authenticated: false });
       });
   }
 
@@ -150,7 +148,7 @@ class Welcome extends Component {
 
   handleClick(event) {
     console.log('Welcome.handleClick() called', event);
-    this.setState({validating: true});
+    this.setState({ validating: true });
     // simulate the in-button loading spinner before calling validateUserSession()
     this.validateUserSession();
   }

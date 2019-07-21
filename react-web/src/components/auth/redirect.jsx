@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Auth } from 'aws-amplify';
+import { Auth, Hub } from 'aws-amplify';
 import { Segment } from 'semantic-ui-react';
-import { Hub } from 'aws-amplify';
 import _ from 'lodash';
 
 class Redirect extends Component {
@@ -24,7 +23,6 @@ class Redirect extends Component {
   }
 
   componentDidMount() {
-
     // we have previously logged in and we are being redirected again.
     // onHubCapsule() won't fire in this case. So lets invoke validateSession()
 
@@ -93,7 +91,7 @@ class Redirect extends Component {
                 refreshToken: session.refreshToken.token
               });
 
-              history.push('/main', {signedIn: true, authenticated: true});
+              history.push('/main', { signedIn: true, authenticated: true });
             } else {
               // fire user is unauthenticated
               const errorMessage = 'user session invalid. auth required';
@@ -107,7 +105,7 @@ class Redirect extends Component {
               });
 
               console.log(errorMessage);
-              history.push('/signin', {signInFailure: true, errorMessage, authenticated: false});
+              history.push('/signin', { signInFailure: true, errorMessage, authenticated: false });
             }
           })
           .catch(err => {
@@ -122,7 +120,7 @@ class Redirect extends Component {
             });
 
             console.error('Redirect.validateUserSession():Auth.userSession() err:', err);
-            history.push('/signin', {signInFailure: true, errorMessage, authenticated: false});
+            history.push('/signin', { signInFailure: true, errorMessage, authenticated: false });
           });
       })
       .catch(err => {
@@ -137,7 +135,7 @@ class Redirect extends Component {
         });
 
         console.error('Redirect.validateUserSession():Auth.currentAuthenticatedUser() err:', err);
-        history.push('/signin', {signInFailure: true, errorMessage, authenticated: false});
+        history.push('/signin', { signInFailure: true, errorMessage, authenticated: false });
       });
   }
 
@@ -149,7 +147,7 @@ class Redirect extends Component {
     } = this.state;
 
     console.log('Redirect.render() state: ', this.state);
-    console.log('Redirect.render() props: ', this.props)
+    console.log('Redirect.render() props: ', this.props);
 
     return (
       <Segment>

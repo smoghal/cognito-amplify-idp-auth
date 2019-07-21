@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import SignIn from './auth/signin';
@@ -7,41 +8,55 @@ import SignOut from './auth/signout';
 import CognitoRedirect from './auth/redirect';
 import Main from './main';
 
-const PublicRoute = ({ component: ReactComponent, ...rest}) => {
+const PublicRoute = ({ component: ReactComponent, ...rest }) => {
   const authStatus = _.has(rest, 'location.state.authenticated', false) ? rest.location.state.authenticated : false;
 
-  console.log('App.PublicRoute() authStatus:', authStatus)
+  console.log('App.PublicRoute() authStatus:', authStatus);
   return (
-    <Route {...rest} render={props => typeof authStatus === 'undefined' || authStatus == false ?
-      ( <ReactComponent {...props} authenticated={authStatus} /> ) : (<Redirect to="/main" authenticated={authStatus} />)
+    <Route {...rest} render={props => typeof authStatus === 'undefined' || authStatus === false
+      ? (<ReactComponent {...props} authenticated={authStatus} />)
+      : (<Redirect to="/main" authenticated={authStatus} />)
     } />
   );
 };
 
-const PrivateRoute = ({ component: ReactComponent, ...rest}) => {
-  const authStatus = _.get(rest, 'location.state.authenticated', false) ? rest.location.state.authenticated : false;
+// Runtime type checking for React props
+PublicRoute.propTypes = {
+  component: PropTypes.any
+};
+
+const PrivateRoute = ({ component: ReactComponent, ...rest }) => {
+  const authStatus = _.get(rest, 'location.state.authenticated', false)
+    ? rest.location.state.authenticated
+    : false;
 
   console.log('App.PrivateRoute() authStatus:', authStatus);
   return (
-    <Route {...rest} render={props => typeof authStatus === 'undefined' || authStatus == false ?
-      ( <Redirect to="/signin" authenticated={authStatus} /> ) : ( <ReactComponent {...props} authenticated={authStatus} /> )
+    <Route {...rest} render={props => typeof authStatus === 'undefined' || authStatus === false
+      ? (<Redirect to="/signin" authenticated={authStatus} />)
+      : (<ReactComponent {...props} authenticated={authStatus} />)
     } />
   );
 };
 
-const DefaultRoute = ({ ...rest}) => {
+// Runtime type checking for React props
+PrivateRoute.propTypes = {
+  component: PropTypes.any
+};
+
+const DefaultRoute = ({ ...rest }) => {
   const authStatus = _.get(rest, 'location.state.authenticated', false) ? rest.location.state.authenticated : false;
 
   console.log('App.DefaultRoute() authStatus:', authStatus);
   return (
-    <Route {...rest} render={props => typeof authStatus === 'undefined' || authStatus == false ?
-      ( <Redirect to="/signin" authenticated={authStatus} /> ) : ( <Redirect to="/main" authenticated={authStatus} /> )
+    <Route {...rest} render={props => typeof authStatus === 'undefined' || authStatus === false
+      ? (<Redirect to="/signin" authenticated={authStatus} />)
+      : (<Redirect to="/main" authenticated={authStatus} />)
     } />
   );
-}
+};
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.handleWindowClose = this.handleWindowClose.bind(this);
@@ -58,7 +73,7 @@ class App extends Component {
   }
   /* eslint-enable camelcase */
 
-  handleWindowClose = async e => {
+  handleWindowClose(e) {
     e.preventDefault();
   }
 
@@ -71,7 +86,6 @@ class App extends Component {
   }
 
   render() {
-
     console.log('App.render() state: ', this.state);
     console.log('App.render() props: ', this.props);
 

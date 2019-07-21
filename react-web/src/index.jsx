@@ -10,14 +10,14 @@ import config from './config_dev';
 import App from './components/app';
 import AppHeader from './components/header';
 
-//AWS SDK & AWS Amplity Configuration
+// AWS SDK & AWS Amplity Configuration
 AWS.config.region = config.AWS_REGION;
 Amplify.configure({
   Auth: {
     identityPoolId: config.AWS_COGNITO_IDENTITY_POOL_ID, // REQUIRED - Amazon Cognito Identity Pool ID
     region: config.AWS_REGION, // REQUIRED - Amazon Cognito Region
-    userPoolId: config.AWS_COGNITO_USER_POOL_ID, //OPTIONAL - Amazon Cognito User Pool ID
-    userPoolWebClientId: config.AWS_COGNITO_CLIENT_ID, //OPTIONAL - Amazon Cognito Web Client ID
+    userPoolId: config.AWS_COGNITO_USER_POOL_ID, // OPTIONAL - Amazon Cognito User Pool ID
+    userPoolWebClientId: config.AWS_COGNITO_CLIENT_ID, // OPTIONAL - Amazon Cognito Web Client ID
     oauth: {
       domain: config.AWS_COGNITO_CLIENT_DOMAIN_NAME,
       scope: config.AWS_COGNITO_IDP_OAUTH_CLAIMS,

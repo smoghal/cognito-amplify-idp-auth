@@ -2,17 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import {  Sidebar, Menu, Segment, Label } from 'semantic-ui-react';
+import { Sidebar, Menu, Segment } from 'semantic-ui-react';
 import WelcomeScreen from './welcome';
 
-
 // Custom Route component that passes a property ('mode') to the routed component
-const RouteWithProps = ({ component: ReactComponent, mode, ...rest}) => {
-  console.log('Main.RouteWithProps() mode:', mode)
+const RouteWithProps = ({ component: ReactComponent, mode, ...rest }) => {
+  console.log('Main.RouteWithProps() mode:', mode);
   return (
-    <Route {...rest} render={props => ( <ReactComponent mode={mode} {...props} /> )} />
+    <Route {...rest} render={props => (<ReactComponent mode={mode} {...props} />)} />
   );
-}
+};
+
+// Runtime type checking for React props
+RouteWithProps.propTypes = {
+  component: PropTypes.any,
+  mode: PropTypes.bool
+};
 
 class Main extends Component {
   constructor(props) {
@@ -31,10 +36,10 @@ class Main extends Component {
     console.log('Main.signout()');
 
     Auth.signOut()
-      .then( data => {
+      .then(data => {
         console.log('Main.signOut():Auth.signOut() data:', data);
 
-        //history.push('/', {signInFailure: false, errorMessage: '', authenticated: false});
+        // history.push('/', {signInFailure: false, errorMessage: '', authenticated: false});
       })
       .catch(err => {
         console.error('Main.signOut():Auth.signOut() err:', err);
@@ -87,7 +92,7 @@ class Main extends Component {
 
 // Runtime type checking for React props
 Main.propTypes = {
-  authenticated: PropTypes.bool
+  // authenticated: PropTypes.bool
 };
 
 export default Main;

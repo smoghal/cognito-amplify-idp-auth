@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Auth} from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 import { Segment, Button } from 'semantic-ui-react';
 import _ from 'lodash';
 import config from '../../config_dev';
 
 class Signin extends Component {
-
   constructor(props) {
     super(props);
 
@@ -48,7 +47,7 @@ class Signin extends Component {
     } = this.props;
 
     console.log('Signin.render() state: ', this.state);
-    console.log('Signin.render() props: ', this.props)
+    console.log('Signin.render() props: ', this.props);
 
     return (
       <Segment>
@@ -74,7 +73,7 @@ class Signin extends Component {
 
 // Runtime type checking for React props
 Signin.propTypes = {
-  authenticated: PropTypes.bool,
+  // authenticated: PropTypes.bool,
   signInFailure: PropTypes.bool,
   errorMessage: PropTypes.string
 };

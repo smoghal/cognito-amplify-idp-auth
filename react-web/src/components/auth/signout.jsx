@@ -40,17 +40,15 @@ class Signout extends Component {
     console.log('Main.signout()');
 
     Auth.signOut()
-      .then( data => {
+      .then(data => {
         console.log('Signout.signOut():Auth.signOut() data:', data);
 
-        //history.push('/', {signInFailure: false, errorMessage: '', authenticated: false});
+        // history.push('/', {signInFailure: false, errorMessage: '', authenticated: false});
       })
       .catch(err => {
         console.error('Signout.signOut():Auth.signOut() err:', err);
       });
   }
-
-
 
   /* eslint-disable react/jsx-handler-names */
   render() {
