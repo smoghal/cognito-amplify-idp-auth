@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": ".",
+			"name": "cognito-amplify-idp-auth"
+		},
+		{
+			"path": "react-web"
+		},
+		{
+			"path": "swift-ios"
+		}
+	]
+}
