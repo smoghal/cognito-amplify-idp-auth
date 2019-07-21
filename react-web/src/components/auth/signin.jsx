@@ -15,7 +15,7 @@ class Signin extends Component {
   componentDidMount() {
     const { signInFailure } = this.props;
 
-    if (_.isUndefined(signInFailure) || _.isNull(signInFailure) ) {
+    if (_.isUndefined(signInFailure) || _.isNull(signInFailure)) {
       console.log('Signin.componentDidMount(): redirecting to cognito signin');
       this.signIn();
     } else {

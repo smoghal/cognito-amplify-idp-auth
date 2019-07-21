@@ -26,7 +26,7 @@ class Welcome extends Component {
   componentDidMount() {
     // we have previously logged in and we are being redirected again.
     // onHubCapsule() won't fire in this case. So lets invoke validateSession()
-    if (_.isUndefined(this.props.authenticated) || this.props.authenticated == false) {
+    if (_.isUndefined(this.props.authenticated) || this.props.authenticated === false) {
       this.validateUserSession();
     }
 
@@ -45,7 +45,7 @@ class Welcome extends Component {
     }
 
     this.interval = setInterval(() => {
-      this.setState({ sessionIdleTime: (Math.round((Date.now() - startTime) / 1000) / 60).toFixed(1) })
+      this.setState({ sessionIdleTime: (Math.round((Date.now() - startTime) / 1000) / 60).toFixed(1) });
     }, 1000);
   }
 
@@ -159,7 +159,7 @@ class Welcome extends Component {
       .then(user => {
         console.log('Welcome.handleUpdateAttributes() Auth.currentAuthenticatedUser() result:', user);
 
-        Auth.updateUserAttributes(user, {'custom:is_admin': '0'})
+        Auth.updateUserAttributes(user, { 'custom:is_admin': '0' })
           .then(result => {
             console.log('Welcome.handleUpdateAttributes() Auth.updateUserAttributes result:', result);
           })
@@ -170,7 +170,6 @@ class Welcome extends Component {
       .catch(err => {
         console.log('Welcome.handleUpdateAttributes() Auth.currentAuthenticatedUser() error:', err);
       });
-
   }
 
   /* eslint-disable react/jsx-handler-names */

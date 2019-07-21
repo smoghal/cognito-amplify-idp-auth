@@ -57,7 +57,7 @@ class Signout extends Component {
     } = this.props;
 
     console.log('Signout.render() state: ', this.state);
-    console.log('Signout.render() props: ', this.props)
+    console.log('Signout.render() props: ', this.props);
 
     return (
       <Segment>

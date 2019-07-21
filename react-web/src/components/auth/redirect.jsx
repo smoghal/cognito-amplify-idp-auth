@@ -29,7 +29,7 @@ class Redirect extends Component {
     // Firefox/Safari bug -- wait for 2+ seconds before calling validate
     this.interval = setInterval(() => {
       clearInterval(this.interval);
-      if (_.isUndefined(this.props.authenticated) || this.props.authenticated == false) {
+      if (_.isUndefined(this.props.authenticated) || this.props.authenticated === false) {
         this.validateUserSession();
       }
     }, 2000);
