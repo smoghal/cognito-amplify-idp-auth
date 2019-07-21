@@ -1,0 +1,35 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# node_modules and webpack
+node_modules
+bundle.js
+backups
+package-lock.json
+
+# IntelliJ
+*.iml
+/.idea
+
+# build resources
+build
+dist
+
+# files
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.lock
+*gz
+*local.md
+*.local
+*.public
+*old
+
+# git
+!.gitkeep
+
+# misc project specifics
+tmp
+docs
+cert
