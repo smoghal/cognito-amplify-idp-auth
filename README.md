@@ -98,7 +98,7 @@ Follow these steps to configure ADFS:
       * Outgoing Claim: `E-Mail Address`
 - Retrieve the login ADFS login URL: Launch PowerShell and type `Get-AdfsProperties` to get ADFS properties; one of the properties is the login URL for ADFS that is publically accessible.  Note that the URL will be in this format `https://sts.<your_domain>/adfs/ls`.  Once ADFS and Cognito configuration are done, use the login URL to test ADFS login is successful. The Login URL is `https://sts.<your_domain>/adfs/ls/idpinitiatedsignon.htm`
 - Enable the Relaying Party: Right click the RP you created, and select `Enable`. Now you should be able to navigate to `https://sts.<your_domain>/adfs/ls/idpinitiatedsignon.htm` in your browser, and see the RP appear in a dropdown.
-  - alternative, you can issue the following command to enable ADFS signon page `Set-AdfsProperties –EnableIdpInitiatedSignonPage $True`
+- Also enable ADFS signon page by using PowerShell command `Set-AdfsProperties –EnableIdpInitiatedSignonPage $True`
 
 ## Domain Controller: Create Test Users
 
