@@ -18,6 +18,7 @@ Amplify.configure({
     region: config.AWS_REGION, // REQUIRED - Amazon Cognito Region
     userPoolId: config.AWS_COGNITO_USER_POOL_ID, // OPTIONAL - Amazon Cognito User Pool ID
     userPoolWebClientId: config.AWS_COGNITO_CLIENT_ID, // OPTIONAL - Amazon Cognito Web Client ID
+    // authenticationFlowType: 'CUSTOM_AUTH', // OPTIONAL - Manually set the authentication flow type. Default is 'USER_SRP_AUTH'
     oauth: {
       domain: config.AWS_COGNITO_CLIENT_DOMAIN_NAME,
       scope: config.AWS_COGNITO_IDP_OAUTH_CLAIMS,
@@ -27,6 +28,7 @@ Amplify.configure({
     }
   }
 });
+
 console.log('Amplify configured');
 
 ReactDOM.render(
