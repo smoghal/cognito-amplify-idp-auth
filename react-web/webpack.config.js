@@ -27,7 +27,7 @@ module.exports = {
   },
   resolve: {
     extensions: [
-      '.js', '.jsx'
+      '.mjs', '.js', '.jsx'
     ]
   },
   devServer: {
