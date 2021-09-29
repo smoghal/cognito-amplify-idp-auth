@@ -268,7 +268,7 @@ The sample React Web Application uses [AWS Amplify][aws-amplify] framework.
 
 
 ## Configuration
-The first step in configuring AWS Amplify for the sample web application is to edit `src/config_dev.jsx`.  Update configuration file properties (below) to match your Cognito configuration before launching or deploying the application.  Contact your infrasrtructure team (or the person responsibile for setting up Cognito and ADFS authentication as documented earlier) to get the values for each of the following fields.
+The first step in configuring AWS Amplify for the sample web application is to edit `src/config.jsx`.  Update configuration file properties (below) to match your Cognito configuration before launching or deploying the application.  Contact your infrasrtructure team (or the person responsibile for setting up Cognito and ADFS authentication as documented earlier) to get the values for each of the following fields.
 
 - `AWS_REGION`: cognito pool region,
 - `AWS_COGNITO_IDENTITY_POOL_ID`: identity pool id
@@ -281,12 +281,12 @@ The first step in configuring AWS Amplify for the sample web application is to e
 - `AWS_COGNITO_IDP_GRANT_FLOW`: possible values are 'code' or 'token'
 
 
-Refer to `src/index.jsx` and review how [AWS Amplify][aws-amplify] is configured (code snippet below) before the sample React Web Application starts.  Note that the variables defined in `src/config_dev.jsx` are imported and used in [AWS Amplify][aws-amplify] initialization.
+Refer to `src/index.jsx` and review how [AWS Amplify][aws-amplify] is configured (code snippet below) before the sample React Web Application starts.  Note that the variables defined in `src/config.jsx` are imported and used in [AWS Amplify][aws-amplify] initialization.
 
 ```Javascript
 import Amplify from 'aws-amplify';
 import AWS from 'aws-sdk';
-import config from './config_dev';
+import config from './config';
 
 //AWS SDK & AWS Amplity Configuration
 AWS.config.region = config.AWS_REGION;
@@ -342,3 +342,7 @@ TBD
 [adfs-group-setup-3]: https://social.technet.microsoft.com/wiki/contents/articles/8008.ad-fs-2-0-selectively-send-group-membership-s-as-a-claim.aspx
 [adfs-group-setup-4]: https://blogs.technet.microsoft.com/askds/2011/10/07/ad-fs-2-0-claims-rule-language-primer/
 [adfs-group-setup-5]: https://moorereason.wordpress.com/2013/10/08/the-swamp-of-adfs-claims-rules/
+
+# License
+
+https://aws.amazon.com/asl/
