@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
 import { Segment, Button } from 'semantic-ui-react';
-import config from '../../config_dev';
+import config from '../../config';
 
 /**
  * This component is only called by Cognito during idP Signout flow

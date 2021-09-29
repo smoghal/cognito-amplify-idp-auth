@@ -10,5 +10,4 @@ const config = {
   AWS_COGNITO_IDP_OAUTH_CLAIMS: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
   AWS_COGNITO_IDP_GRANT_FLOW: 'code' // 'code' or 'token'
 };
-
 export default config;

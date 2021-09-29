@@ -4,7 +4,7 @@ import { Auth, Hub } from 'aws-amplify';
 import { StorageHelper } from '@aws-amplify/core';
 import { Segment } from 'semantic-ui-react';
 import _ from 'lodash';
-import config from '../../config_dev';
+import config from '../../config';
 
 const storage = new StorageHelper().getStorage();
 

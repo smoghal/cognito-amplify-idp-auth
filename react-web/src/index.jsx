@@ -4,8 +4,7 @@ import ReactDOM from 'react-dom';
 import Amplify from 'aws-amplify';
 import AWS from 'aws-sdk';
 
-// TODO - check process.env and load config_dev or config_prod
-import config from './config_dev';
+import config from './config';
 
 import App from './components/app';
 import AppHeader from './components/header';
